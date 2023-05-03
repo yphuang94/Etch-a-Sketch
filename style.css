@@ -1,12 +1,23 @@
 #main-container {
-    height: 100vh;
-    border: 1px solid black;
     display: flex;
-    flex-wrap: wrap;
-    
+    height: 100vh;
+    justify-content: center;
+    align-items: center;
 }
 
-#main-container > div {
-    border: 1px solid blue;
+#grid-container {
+    border: 1px solid lightcoral;
+    display: flex;
+    flex-wrap: wrap;
+    height: 50vh;
+    width: 70%;
+}
+
+#grid-container > div {
+    border: 1px solid gray;
     flex: 1 0 20%;
+}
+
+#grid-container > div:hover {
+    background-color: lightblue;
 }
