@@ -3,9 +3,10 @@
     border: 1px solid black;
     display: flex;
     flex-wrap: wrap;
+    
 }
 
 #main-container > div {
     border: 1px solid blue;
-    width: 100px;
+    flex: 1 0 20%;
 }
