@@ -15,10 +15,29 @@
 
     <script>
         for (i = 0; i < 16; i++) {
-            document.getElementById("grid-container").appendChild(document.createElement('div'));
+            let new_container = document.getElementById("grid-container").appendChild(document.createElement('div'));
+            new_container.classList.add("grid");
+            new_container.classList.add(i); //add unique class to each grid to test mouseover
         }
+        
+        const boxes = document.querySelectorAll(".grid");
 
+        boxes.forEach(box => {
+            box.addEventListener("click", function(){
+                box.style.backgroundColor = '#00008B';
+            });
+        });
 
+        /*
+        const boxes = document.getElementsByClassName("grid");
+        
+        for (box of boxes) {
+            box.addEventListener("click", function() {
+                box.style.backgroundColor = '#00008B';
+            });
+        }
+        */
+        
     </script>
 
 </body>

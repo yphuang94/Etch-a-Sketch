@@ -13,11 +13,13 @@
     width: 70%;
 }
 
-#grid-container > div {
+.grid {
     border: 1px solid gray;
     flex: 1 0 20%;
 }
 
-#grid-container > div:hover {
+/*
+.grid:hover {
     background-color: lightblue;
 }
+*/
