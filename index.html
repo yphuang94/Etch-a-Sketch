@@ -10,23 +10,20 @@
 
 <body>
     <div id="main-container">
-        <div id="grid-container" onmousemove="hover()"></div>
+        <div id="grid-container" onmousemove="colorGrid()"></div>
     </div>
 
     <script>
         var mouseToggle = false;
         let pos = "";
 
-        for (i = 0; i < 16; i++) {
+        for (i = 0; i < 16; i++) { 
             let new_container = document.getElementById("grid-container").appendChild(document.createElement('div'));
             new_container.classList.add("grid");
         }
 
         document.addEventListener("mousedown", function (){
             mouseToggle = true;
-            let posX = pos.slice(0,3);
-            let posY = pos.slice(-3);
-            document.elementFromPoint(posX,posY).style.backgroundColor = `#00008B`;
         })
         document.addEventListener("mouseup", function (){
             mouseToggle = false;
@@ -36,14 +33,20 @@
             pos = `${pageX},${pageY}`;
         });
         
-        function hover() {
+        function colorGrid() {
             let posX = pos.slice(0,3);
             let posY = pos.slice(-3);
-            console.log("invoking function");
             if(mouseToggle == true){
-                document.elementFromPoint(posX,posY).style.backgroundColor = `#00008B`;
+                document.elementFromPoint(posX,posY).style.backgroundColor = `#D3D3D3`;
             }
         }
+
+        const boxes = document.querySelectorAll(".grid")
+        boxes.forEach(box => {
+            box.addEventListener("mousedown", function(){
+                box.style.backgroundColor = `#D3D3D3`;
+            })
+        })
 
     </script>
 
