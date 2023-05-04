@@ -10,34 +10,37 @@
 
 <body>
     <div id="main-container">
-        <div id="grid-container"></div>
+        <div id="grid-container" onmouseover="hover()"></div>
     </div>
 
     <script>
+        var mouseToggle = false;
+        let pos = "";
+
         for (i = 0; i < 16; i++) {
             let new_container = document.getElementById("grid-container").appendChild(document.createElement('div'));
             new_container.classList.add("grid");
-            new_container.classList.add(i); //add unique class to each grid to test mouseover
         }
-        
-        const boxes = document.querySelectorAll(".grid");
 
-        boxes.forEach(box => {
-            box.addEventListener("click", function(){
-                box.style.backgroundColor = '#00008B';
-            });
+        document.addEventListener("mousedown", function (){
+            mouseToggle = true;
+        })
+        document.addEventListener("mouseup", function (){
+            mouseToggle = false;
+        })
+        
+        document.addEventListener("mousemove", ({pageX, pageY}) => {
+            pos = `${pageX},${pageY}`;
         });
-
-        /*
-        const boxes = document.getElementsByClassName("grid");
         
-        for (box of boxes) {
-            box.addEventListener("click", function() {
-                box.style.backgroundColor = '#00008B';
-            });
+        function hover() {
+            let posX = pos.slice(0,3);
+            let posY = pos.slice(-3);
+            if(mouseToggle == true){
+                document.elementFromPoint(posX,posY).style.backgroundColor = `#00008B`;
+            }
         }
-        */
-        
+
     </script>
 
 </body>
