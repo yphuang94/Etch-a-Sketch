@@ -10,7 +10,7 @@
 
 <body>
     <div id="main-container">
-        <div id="grid-container" onmouseover="hover()"></div>
+        <div id="grid-container" onmousemove="hover()"></div>
     </div>
 
     <script>
@@ -24,6 +24,9 @@
 
         document.addEventListener("mousedown", function (){
             mouseToggle = true;
+            let posX = pos.slice(0,3);
+            let posY = pos.slice(-3);
+            document.elementFromPoint(posX,posY).style.backgroundColor = `#00008B`;
         })
         document.addEventListener("mouseup", function (){
             mouseToggle = false;
@@ -36,6 +39,7 @@
         function hover() {
             let posX = pos.slice(0,3);
             let posY = pos.slice(-3);
+            console.log("invoking function");
             if(mouseToggle == true){
                 document.elementFromPoint(posX,posY).style.backgroundColor = `#00008B`;
             }
