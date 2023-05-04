@@ -11,6 +11,7 @@
     flex-wrap: wrap;
     height: 50vh;
     width: 70%;
+    margin-right: 100px;
 }
 
 .grid {
@@ -18,8 +19,7 @@
     flex: 1 0 20%;
 }
 
-/*
-.grid:hover {
-    background-color: lightblue;
+#user-container {
+    width: 30%;
+    
 }
-*/

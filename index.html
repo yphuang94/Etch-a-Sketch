@@ -10,10 +10,18 @@
 
 <body>
     <div id="main-container">
+        <div id="user-container">
+            <div id="gridsize">GRIDSIZE PLACEHOLDER</div>
+            <div id="gridsize"><button onclick="clearGrid()">CLEAR PLACEHOLDER</button></div>
+        </div>
         <div id="grid-container" onmousemove="colorGrid()"></div>
     </div>
+    
 
     <script>
+
+
+
         var mouseToggle = false;
         let pos = "";
 
@@ -42,12 +50,19 @@
         }
 
         const boxes = document.querySelectorAll(".grid")
+        
         boxes.forEach(box => {
             box.addEventListener("mousedown", function(){
                 box.style.backgroundColor = `#D3D3D3`;
             })
         })
 
+        function clearGrid() {
+            boxes.forEach(box => {
+                box.style.backgroundColor = `#FFFFFF`;
+            })
+        }
+        
     </script>
 
 </body>
