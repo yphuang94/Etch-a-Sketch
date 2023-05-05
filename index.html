@@ -28,6 +28,7 @@
     <script>
         let slider = document.getElementById("slider"); //W3Schools
         let output = document.getElementById("gridsize"); 
+        let rainbowToggle = false;
 
         output.innerHTML = slider.value; 
         
@@ -47,14 +48,17 @@
                 let new_container = document.getElementById("grid-container").appendChild(document.createElement('div'));
                 new_container.classList.add("grid");
             }
-
+            assignMouseDown();
+        }
+        
+        function assignMouseDown() {
             const boxes = document.querySelectorAll(".grid")
-
+            
             boxes.forEach(box => {
-            box.addEventListener("mousedown", function(){
-                box.style.backgroundColor = `#D3D3D3`;
+                box.addEventListener("mousedown", function(){
+                    box.style.backgroundColor = `#D3D3D3`
+                })
             })
-        })
         }
 
         function resetGrid() { //W3Schools
@@ -86,7 +90,9 @@
         function colorGrid() {
             let posX = pos.slice(0,3);
             let posY = pos.slice(-3);
-            if(mouseToggle == true){
+            if (mouseToggle == true && rainbowToggle == true) {
+                document.elementFromPoint(posX,posY).style.backgroundColor = hexGenerator();
+            } else if (mouseToggle == true){
                 document.elementFromPoint(posX,posY).style.backgroundColor = `#D3D3D3`;
             }
         }
@@ -98,20 +104,35 @@
             })
         }
 
-        let rainbowToggle = false;
-
         function rainbowMode() {
+            hexGenerator();
+            rainbowMouseDown();
+        }
+
+        function hexGenerator() {
             rainbowToggle = true;
             let rainbowHex = "";
             let newHex = [];
             let colorHex = ["0","1","2","3","4","5","6","7","8","9","A","B","C","D","E","F"];
+            let squares = document.querySelectorAll(".grid")
 
             for (i = 0; i < 6; i++) {
                 newHex.push(colorHex[(Math.floor(Math.random() * colorHex.length))]);
             }
-            
-            return rainbowHex = `#${newHex.join("")}`;
+            rainbowHex = `#${newHex.join("")}`
+            return rainbowHex;
         }
+
+        function rainbowMouseDown() {
+            let squares = document.querySelectorAll(".grid")
+            squares.forEach(square => {
+                square.addEventListener("mousedown", function(){
+                    square.style.backgroundColor = hexGenerator()
+                })
+            })
+        }
+
+
         
     </script>
 
