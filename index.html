@@ -50,6 +50,14 @@
                 let new_container = document.getElementById("grid-container").appendChild(document.createElement('div'));
                 new_container.classList.add("grid");
             }
+            
+            const boxes = document.querySelectorAll(".grid")
+
+            boxes.forEach(box => {
+            box.addEventListener("mousedown", function(){
+                box.style.backgroundColor = `#D3D3D3`;
+            })
+        })
         }
 
         function newGrid() {
@@ -79,6 +87,7 @@
             }
         }
 
+        /*
         const boxes = document.querySelectorAll(".grid")
         
         boxes.forEach(box => {
@@ -86,7 +95,7 @@
                 box.style.backgroundColor = `#D3D3D3`;
             })
         })
-
+        */
         function clearGrid() {
             boxes.forEach(box => {
                 box.style.backgroundColor = `#FFFFFF`;
