@@ -11,8 +11,10 @@
 <body>
     <div id="main-container">
         <div id="user-container">
-            <div id="gridsize">GRIDSIZE PLACEHOLDER</div>
-            <div id="gridsize"><button onclick="clearGrid()">CLEAR PLACEHOLDER</button></div>
+            <div><input type="range" min="1" max="32" value="16" id="slider">
+            <p>Grid Size: <span id="gridsize"></span></p>
+            </div>
+            <div id="clear-grid"><button onclick="clearGrid()">CLEAR PLACEHOLDER</button></div>
         </div>
         <div id="grid-container" onmousemove="colorGrid()"></div>
     </div>
@@ -20,14 +22,33 @@
 
     <script>
 
+        var slider = document.getElementById("slider"); //grabs HTML element of slider
+        var output = document.getElementById("gridsize"); //grabs HTML element of slider value
 
+        output.innerHTML = slider.value; //fills HTML of slider value with "16", which is the default
+        
+        
+        slider.oninput = function() { //when slider is changed, update output with new slider value
+            output.innerHTML = slider.value; 
+        }
+        
+        slider.onmouseup = function() {
+            output.innerHTML = slider.value;
+            createGrid();
+        }
 
         var mouseToggle = false;
         let pos = "";
 
-        for (i = 0; i < 16; i++) { 
+        function createGrid() {
+        let parent = document.getElementById("grid-container") //reset grid
+        while (parent.hasChildNodes()) {
+            parent.removeChild(parent.firstChild);
+        }
+        for (i = 0; i < slider.value; i++) { //create new grid
             let new_container = document.getElementById("grid-container").appendChild(document.createElement('div'));
             new_container.classList.add("grid");
+        }
         }
 
         document.addEventListener("mousedown", function (){
