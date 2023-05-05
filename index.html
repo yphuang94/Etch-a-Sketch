@@ -12,7 +12,7 @@
     <div id="main-container">
 
         <div id="user-container">
-            <div><button id="rainbow" onclick="rainbowMode()">Rainbow Mode</button></div>
+            <div><button id="rainbow" onclick="rainbowGrid()">Rainbow Mode</button></div>
 
             <div><input type="range" min="1" max="32" value="16" id="slider">
             <p>Grid Size: <span id="gridsize"></span></p>
@@ -29,6 +29,7 @@
         let slider = document.getElementById("slider"); //W3Schools
         let output = document.getElementById("gridsize"); 
         let rainbowToggle = false;
+        let mouseToggle = false;
 
         output.innerHTML = slider.value; 
         
@@ -51,16 +52,6 @@
             assignMouseDown();
         }
         
-        function assignMouseDown() {
-            const boxes = document.querySelectorAll(".grid")
-            
-            boxes.forEach(box => {
-                box.addEventListener("mousedown", function(){
-                    box.style.backgroundColor = `#D3D3D3`
-                })
-            })
-        }
-
         function resetGrid() { //W3Schools
             let parent = document.getElementById("grid-container") 
             while (parent.hasChildNodes()) {
@@ -73,7 +64,16 @@
             createGrid();
         }
 
-        let mouseToggle = false;
+        function assignMouseDown() {
+            const boxes = document.querySelectorAll(".grid")
+            
+            boxes.forEach(box => {
+                box.addEventListener("mousedown", function(){
+                    box.style.backgroundColor = `#D3D3D3`
+                })
+            })
+        }
+
         let pos = "";
 
         document.addEventListener("mousedown", function (){
@@ -104,15 +104,14 @@
             })
         }
 
-        function rainbowMode() {
+        function rainbowGrid() {
             if (rainbowToggle == false) {
                 rainbowToggle = true;
             } else {
                 rainbowToggle = false;
             }
-            hexGenerator();
             rainbowMouseDown();
-            console.log(rainbowToggle);
+            console.log(rainbowToggle); //check toggle
         }
 
         function hexGenerator() {
@@ -130,15 +129,21 @@
 
         function rainbowMouseDown() {
             let squares = document.querySelectorAll(".grid")
-            squares.forEach(square => {
-                square.addEventListener("mousedown", function(){
-                    square.style.backgroundColor = hexGenerator()
+            if (rainbowToggle == true) {
+                squares.forEach(square => {
+                    square.addEventListener("mousedown", function(){
+                        square.style.backgroundColor = hexGenerator()
+                    })
                 })
-            })
+            } else {
+                squares.forEach(square => {
+                    square.addEventListener("mousedown", function(){
+                        square.style.backgroundColor = `#D3D3D3`;
+                    })
+                })
+            }
         }
 
-
-        
     </script>
 
 </body>
