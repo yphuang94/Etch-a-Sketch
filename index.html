@@ -10,20 +10,24 @@
 
 <body>
     <div id="main-container">
+
         <div id="user-container">
+            <div><button id="rainbow" onclick="rainbowMode()">Rainbow Mode</button></div>
+
             <div><input type="range" min="1" max="32" value="16" id="slider">
             <p>Grid Size: <span id="gridsize"></span></p>
             </div>
-            <div id="clear-grid"><button onclick="clearGrid()">CLEAR PLACEHOLDER</button></div>
+
+            <div id="clear-grid"><button onclick="clearGrid()">Clear</button></div>
         </div>
+
         <div id="grid-container" onmousemove="colorGrid()"></div>
     </div>
     
 
     <script>
-
-        var slider = document.getElementById("slider"); 
-        var output = document.getElementById("gridsize"); 
+        let slider = document.getElementById("slider"); //W3Schools
+        let output = document.getElementById("gridsize"); 
 
         output.innerHTML = slider.value; 
         
@@ -31,19 +35,12 @@
             output.innerHTML = slider.value; 
         }
         
-        slider.onmouseup = function() {
+        slider.onmouseup = function() { //self
             output.innerHTML = slider.value;
             newGrid();
         }
 
-        createGrid();
-
-        function resetGrid() {
-            let parent = document.getElementById("grid-container") 
-            while (parent.hasChildNodes()) {
-                parent.removeChild(parent.firstChild);
-            }
-        }
+        createGrid(); 
 
         function createGrid() {
             for (i = 0; i < slider.value; i++) { 
@@ -60,12 +57,19 @@
         })
         }
 
-        function newGrid() {
+        function resetGrid() { //W3Schools
+            let parent = document.getElementById("grid-container") 
+            while (parent.hasChildNodes()) {
+                parent.removeChild(parent.firstChild);
+            }
+        }
+
+        function newGrid() { 
             resetGrid();
             createGrid();
         }
 
-        var mouseToggle = false;
+        let mouseToggle = false;
         let pos = "";
 
         document.addEventListener("mousedown", function (){
@@ -92,6 +96,21 @@
             currentGrid.forEach(box => {
                 box.style.backgroundColor = `#FFFFFF`;
             })
+        }
+
+        let rainbowToggle = false;
+
+        function rainbowMode() {
+            rainbowToggle = true;
+            let rainbowHex = "";
+            let newHex = [];
+            let colorHex = ["0","1","2","3","4","5","6","7","8","9","A","B","C","D","E","F"];
+
+            for (i = 0; i < 6; i++) {
+                newHex.push(colorHex[(Math.floor(Math.random() * colorHex.length))]);
+            }
+            
+            return rainbowHex = `#${newHex.join("")}`;
         }
         
     </script>
