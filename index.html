@@ -22,34 +22,43 @@
 
     <script>
 
-        var slider = document.getElementById("slider"); //grabs HTML element of slider
-        var output = document.getElementById("gridsize"); //grabs HTML element of slider value
+        var slider = document.getElementById("slider"); 
+        var output = document.getElementById("gridsize"); 
 
-        output.innerHTML = slider.value; //fills HTML of slider value with "16", which is the default
+        output.innerHTML = slider.value; 
         
-        
-        slider.oninput = function() { //when slider is changed, update output with new slider value
+        slider.oninput = function() { 
             output.innerHTML = slider.value; 
         }
         
         slider.onmouseup = function() {
             output.innerHTML = slider.value;
+            newGrid();
+        }
+
+        createGrid();
+
+        function resetGrid() {
+            let parent = document.getElementById("grid-container") 
+            while (parent.hasChildNodes()) {
+                parent.removeChild(parent.firstChild);
+            }
+        }
+
+        function createGrid() {
+            for (i = 0; i < slider.value; i++) { 
+                let new_container = document.getElementById("grid-container").appendChild(document.createElement('div'));
+                new_container.classList.add("grid");
+            }
+        }
+
+        function newGrid() {
+            resetGrid();
             createGrid();
         }
 
         var mouseToggle = false;
         let pos = "";
-
-        function createGrid() {
-        let parent = document.getElementById("grid-container") //reset grid
-        while (parent.hasChildNodes()) {
-            parent.removeChild(parent.firstChild);
-        }
-        for (i = 0; i < slider.value; i++) { //create new grid
-            let new_container = document.getElementById("grid-container").appendChild(document.createElement('div'));
-            new_container.classList.add("grid");
-        }
-        }
 
         document.addEventListener("mousedown", function (){
             mouseToggle = true;
