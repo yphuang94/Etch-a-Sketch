@@ -43,16 +43,23 @@
             newGrid();
             console.log(slider.value); // ((100 / slider.value) - 1)% should generate the flex basis and account for the borders
         }
-
+        
         createGrid(); 
-
+        
         function createGrid() {
-            for (i = 0; i < slider.value; i++) { 
+            for (i = 0; i < slider.value * slider.value; i++) { 
                 let new_container = document.getElementById("grid-container").appendChild(document.createElement('div'));
                 new_container.classList.add("grid");
             }
+            let basis = (100 / slider.value - 1);
+            let myGrid = document.querySelectorAll(".grid");
+            myGrid.forEach(box => {
+                box.style.flex = `1 1 ${basis}%`;
+            })
             assignMouseDown();
         }
+
+        
 
         function assignMouseDown() {
             const boxes = document.querySelectorAll(".grid")
