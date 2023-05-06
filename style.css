@@ -15,13 +15,12 @@
     display: flex;
     flex-wrap: wrap;
     height: 50vh;
-    width: 70%;
+    width: 50%;
     margin-right: 100px;
 }
 
 .grid {
     border: 1px solid gray;
-    flex: 1 0 24%;
 }
 
 #user-container {

@@ -15,7 +15,7 @@
         <div id="user-container">
             <div><button id="rainbow" onclick="rainbowGrid()">Rainbow Mode</button></div>
 
-            <div><input type="range" min="1" max="32" value="16" id="slider">
+            <div><input type="range" min="8" max="30" value="8" id="slider">
             <p>Grid Size: <span id="gridsize"></span></p>
             </div>
 
@@ -27,7 +27,7 @@
     
 
     <script>
-        let slider = document.getElementById("slider"); //W3Schools
+        let slider = document.getElementById("slider"); 
         let output = document.getElementById("gridsize"); 
         let rainbowToggle = false;
         let mouseToggle = false;
@@ -38,10 +38,9 @@
             output.innerHTML = slider.value + " x " + slider.value; 
         }
         
-        slider.onmouseup = function() { //self
+        slider.onmouseup = function() {
             output.innerHTML = slider.value + " x " + slider.value;
             newGrid();
-            console.log(slider.value); // ((100 / slider.value) - 1)% should generate the flex basis and account for the borders
         }
         
         createGrid(); 
@@ -51,15 +50,14 @@
                 let new_container = document.getElementById("grid-container").appendChild(document.createElement('div'));
                 new_container.classList.add("grid");
             }
-            let basis = (100 / slider.value - 1);
+
+            let basis = (100 / slider.value - .3); //gets smaller as grid-container gets narrower
             let myGrid = document.querySelectorAll(".grid");
             myGrid.forEach(box => {
-                box.style.flex = `1 1 ${basis}%`;
+                box.style.flex = `1 0 ${basis}%`; //set flex-basis to create dynamic grid
             })
             assignMouseDown();
         }
-
-        
 
         function assignMouseDown() {
             const boxes = document.querySelectorAll(".grid")
@@ -71,7 +69,7 @@
             })
         }
 
-        function resetGrid() { //W3Schools
+        function resetGrid() { 
             let parent = document.getElementById("grid-container") 
             while (parent.hasChildNodes()) {
                 parent.removeChild(parent.firstChild);
