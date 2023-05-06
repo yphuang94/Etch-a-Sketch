@@ -9,6 +9,7 @@
 </head>
 
 <body>
+    <div id="title-container">Etch-a-Sketch</div>
     <div id="main-container">
 
         <div id="user-container">
@@ -21,7 +22,7 @@
             <div id="clear-grid"><button onclick="clearGrid()">Clear</button></div>
         </div>
 
-        <div id="grid-container" onmousemove="colorGrid()"></div>
+        <div id="grid-container" onmousemove="hoverFill()"></div>
     </div>
     
 
@@ -31,15 +32,16 @@
         let rainbowToggle = false;
         let mouseToggle = false;
 
-        output.innerHTML = slider.value; 
+        output.innerHTML = slider.value + " x " + slider.value;
         
         slider.oninput = function() { 
-            output.innerHTML = slider.value; 
+            output.innerHTML = slider.value + " x " + slider.value; 
         }
         
         slider.onmouseup = function() { //self
-            output.innerHTML = slider.value;
+            output.innerHTML = slider.value + " x " + slider.value;
             newGrid();
+            console.log(slider.value); // ((100 / slider.value) - 1)% should generate the flex basis and account for the borders
         }
 
         createGrid(); 
@@ -51,7 +53,17 @@
             }
             assignMouseDown();
         }
-        
+
+        function assignMouseDown() {
+            const boxes = document.querySelectorAll(".grid")
+            
+            boxes.forEach(box => {
+                box.addEventListener("mousedown", function(){
+                    box.style.backgroundColor = `#D3D3D3`
+                })
+            })
+        }
+
         function resetGrid() { //W3Schools
             let parent = document.getElementById("grid-container") 
             while (parent.hasChildNodes()) {
@@ -62,16 +74,6 @@
         function newGrid() { 
             resetGrid();
             createGrid();
-        }
-
-        function assignMouseDown() {
-            const boxes = document.querySelectorAll(".grid")
-            
-            boxes.forEach(box => {
-                box.addEventListener("mousedown", function(){
-                    box.style.backgroundColor = `#D3D3D3`
-                })
-            })
         }
 
         let pos = "";
@@ -87,7 +89,7 @@
             pos = `${pageX},${pageY}`;
         });
         
-        function colorGrid() {
+        function hoverFill() {
             let posX = pos.slice(0,3);
             let posY = pos.slice(-3);
             if (mouseToggle == true && rainbowToggle == true) {
@@ -104,16 +106,6 @@
             })
         }
 
-        function rainbowGrid() {
-            if (rainbowToggle == false) {
-                rainbowToggle = true;
-            } else {
-                rainbowToggle = false;
-            }
-            rainbowMouseDown();
-            console.log(rainbowToggle); //check toggle
-        }
-
         function hexGenerator() {
             let rainbowHex = "";
             let newHex = [];
@@ -127,12 +119,21 @@
             return rainbowHex;
         }
 
+        function rainbowGrid() {
+            if (rainbowToggle == false) {
+                rainbowToggle = true;
+            } else {
+                rainbowToggle = false;
+            }
+            rainbowMouseDown();
+        }
+
         function rainbowMouseDown() {
             let squares = document.querySelectorAll(".grid")
             if (rainbowToggle == true) {
                 squares.forEach(square => {
                     square.addEventListener("mousedown", function(){
-                        square.style.backgroundColor = hexGenerator()
+                        square.style.backgroundColor = hexGenerator() //does this invoke the function every time?
                     })
                 })
             } else {

@@ -1,6 +1,11 @@
+#title-container {
+    text-align: center;
+    height: 20vh;
+}
+
 #main-container {
     display: flex;
-    height: 100vh;
+    height: 80vh;
     justify-content: center;
     align-items: center;
 }
@@ -16,7 +21,7 @@
 
 .grid {
     border: 1px solid gray;
-    flex: 1 0 20%;
+    flex: 1 0 24%;
 }
 
 #user-container {
