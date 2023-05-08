@@ -12,21 +12,24 @@
     <div id="title-container">Etch-a-Sketch</div>
     <div id="main-container">
         <div id="user-container">
-            <div><button id="rainbow" onclick="rainbowGrid()">Rainbow Mode</button></div>
             <div><input type="range" min="8" max="30" value="8" id="slider">
                 <p>Grid Size: <span id="gridsize"></span></p>
             </div>
-            <div><button id="clear-grid" onclick="clearGrid()">Clear</button></div>
+            <div><button id="rainbow" onclick="rainbowGrid()">Rainbow Mode</button></div>
+            <div><button id="eraser" onclick="eraser()">Eraser</button></div>
+            <div><button id="clear-grid" onclick="clearGrid()">Clear Grid</button></div>
         </div>
         <div id="grid-container" onmousemove="gridHover()"></div>
     </div>
     
+
 
     <script>
         let slider = document.getElementById("slider"); 
         let output = document.getElementById("gridsize"); 
         let rainbowToggle = false;
         let mouseToggle = false;
+        let eraserToggle = false;
 
         output.innerHTML = slider.value + " x " + slider.value;
         
@@ -97,6 +100,8 @@
                 box.addEventListener("mousemove", function() { //all grids have EventListener, whether or not styling triggers depend on the toggle
                     if (mouseToggle == true && rainbowToggle == true) {
                         box.style.backgroundColor = hexGenerator();
+                    } else if (mouseToggle == true && eraserToggle == true) {
+                        box.style.backgroundColor = `#FFFFFF`;
                     } else if (mouseToggle == true) {
                         box.style.backgroundColor = `#D3D3D3`;
                     }
@@ -104,11 +109,20 @@
             })
         }
 
+        function eraser() {
+            if (eraserToggle == false) {
+                eraserToggle = true;
+                document.getElementById("eraser").style.backgroundColor = `#90EE90`;
+            } else {
+                eraserToggle = false;
+                document.getElementById("eraser").style.backgroundColor = `#FFFFFF`;
+            }
+        }
+
         function hexGenerator() {
             let rainbowHex = "";
             let newHex = [];
             let colorHex = ["0","1","2","3","4","5","6","7","8","9","A","B","C","D","E","F"];
-            //let squares = document.querySelectorAll(".grid")
 
             for (i = 0; i < 6; i++) {
                 newHex.push(colorHex[(Math.floor(Math.random() * colorHex.length))]);
@@ -120,8 +134,10 @@
         function rainbowGrid() {
             if (rainbowToggle == false) {
                 rainbowToggle = true;
+                document.getElementById("rainbow").style.backgroundColor = `#90EE90`;
             } else {
                 rainbowToggle = false;
+                document.getElementById("rainbow").style.backgroundColor = `#FFFFFF`;
             }
             rainbowMouseDown();
         }
