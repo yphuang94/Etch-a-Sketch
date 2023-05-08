@@ -9,24 +9,26 @@
 </head>
 
 <body>
-    <div id="title-container">Etch-a-Sketch</div>
+    <div id="title-container">
+        <div id="title">Etch-a-Sketch</div>
+    </div>
     <div id="main-container">
-        <div id="user-container">
+        <div id="settings">
             <div><input type="range" min="8" max="30" value="8" id="slider">
-                <p>Grid Size: <span id="gridsize"></span></p>
+                <p><span id="range-value"></span></p>
             </div>
-            <div><button id="rainbow" onclick="rainbowGrid()">Rainbow Mode</button></div>
-            <div><button id="eraser" onclick="eraser()">Eraser</button></div>
-            <div><button id="clear-grid" onclick="clearGrid()">Clear Grid</button></div>
+            <div id="rainbow-parent"><button id="rainbow" onclick="rainbowGrid()">Rainbow Mode</button></div>
+            <div id="eraser-parent"><button id="eraser" onclick="eraser()">Eraser</button></div>
+            <div id="clear-parent"><button id="clear-grid" onclick="clearGrid()">Clear Grid</button></div>
         </div>
         <div id="grid-container" onmousemove="gridHover()"></div>
     </div>
-    
+
 
 
     <script>
         let slider = document.getElementById("slider"); 
-        let output = document.getElementById("gridsize"); 
+        let output = document.getElementById("range-value"); 
         let rainbowToggle = false;
         let mouseToggle = false;
         let eraserToggle = false;
@@ -55,7 +57,6 @@
             for (i = 0; i < slider.value * slider.value; i++) { 
                 let new_container = document.getElementById("grid-container").appendChild(document.createElement('div'));
                 new_container.classList.add("grid");
-                new_container.classList.add(i);
             }
 
             let basis = (100 / slider.value - .3); //gets smaller as grid-container gets narrower
@@ -112,10 +113,10 @@
         function eraser() {
             if (eraserToggle == false) {
                 eraserToggle = true;
-                document.getElementById("eraser").style.backgroundColor = `#90EE90`;
+                /*document.getElementById("eraser").style.backgroundColor = `#90EE90`;*/
             } else {
                 eraserToggle = false;
-                document.getElementById("eraser").style.backgroundColor = `#FFFFFF`;
+                /*document.getElementById("eraser").style.backgroundColor = `#FFFFFF`;*/
             }
         }
 
