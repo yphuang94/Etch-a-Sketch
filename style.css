@@ -1,3 +1,7 @@
+body {
+    background-image: linear-gradient(gray,white);
+}
+
 #title-container {
     height: 20vh;
     display: flex;
@@ -6,10 +10,10 @@
 }
 
 #title {
-    font-size: 56px;
+    font-size: 72px;
     font-weight: 700;
     font-family: "roboto", sans-serif;
-    color: #454545;
+    color: white;
 }
 
 #main-container {
@@ -17,6 +21,7 @@
     height: 60vh;
     justify-content: center;
     align-items: center;
+    
 }
 
 #grid-container {
@@ -26,6 +31,7 @@
     width: 50%;
     box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
     margin-right: 400px;
+    background-color: white;
 }
 
 #settings {
@@ -68,28 +74,28 @@ button {
     height: 40px;
     font-weight: 600;
     padding: 12px 20px;
-    background-color: transparent;
+    background-color: white;
     border-radius: 5px; 
 }
 
-#eraser:after {
-    content: "";
-    position: absolute;
-    width: 100%;
-    bottom: 7px;
-    left: 7px;
-    height: 70%;
-    background-color: rgb(201, 184, 246);
-    z-index: -1;
-    transition: all 0.35s;
-    border-radius: inherit;
-  }
-
-#eraser-parent {
+#range-value {
     position: relative;
+    display: block;
+    text-align: center;
+    font-size: 4em;
+    color: white;
+    font-weight: 400;
 }
 
-#eraser:focus:after {
-    bottom: 0px;
-    left: 0px;
-  }
+#footer-container {
+    height: 20vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#footer {
+    font-size: 18px;
+    color: black;
+    font-family: "roboto", sans-serif;
+}

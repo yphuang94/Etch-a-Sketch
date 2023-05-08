@@ -14,16 +14,17 @@
     </div>
     <div id="main-container">
         <div id="settings">
-            <div><input type="range" min="8" max="30" value="8" id="slider">
-                <p><span id="range-value"></span></p>
-            </div>
-            <div id="rainbow-parent"><button id="rainbow" onclick="rainbowGrid()">Rainbow Mode</button></div>
-            <div id="eraser-parent"><button id="eraser" onclick="eraser()">Eraser</button></div>
-            <div id="clear-parent"><button id="clear-grid" onclick="clearGrid()">Clear Grid</button></div>
+            <p><span id="range-value"></span></p>
+            <div><input type="range" min="8" max="30" value="8" id="slider"></div>
+            <div><button id="rainbow" onclick="rainbowGrid()">Rainbow Mode</button></div>
+            <div><button id="eraser" onclick="eraser()">Eraser</button></div>
+            <div><button id="clear-grid" onclick="clearGrid()">Clear Grid</button></div>
         </div>
         <div id="grid-container" onmousemove="gridHover()"></div>
     </div>
-
+    <div id="footer-container">
+        <div id="footer">Copyright @yphuang94</div>
+    </div>
 
 
     <script>
@@ -113,10 +114,11 @@
         function eraser() {
             if (eraserToggle == false) {
                 eraserToggle = true;
-                /*document.getElementById("eraser").style.backgroundColor = `#90EE90`;*/
+                document.getElementById("eraser").style.backgroundColor = `#90EE90`;
+
             } else {
                 eraserToggle = false;
-                /*document.getElementById("eraser").style.backgroundColor = `#FFFFFF`;*/
+                document.getElementById("eraser").style.backgroundColor = `#FFFFFF`;
             }
         }
 
