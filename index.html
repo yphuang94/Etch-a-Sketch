@@ -60,7 +60,7 @@
                 new_container.classList.add("grid");
             }
 
-            let basis = (100 / slider.value - .3); //gets smaller as grid-container gets narrower
+            let basis = (100 / slider.value); //gets smaller as grid-container gets narrower
             let myGrid = document.querySelectorAll(".grid");
             myGrid.forEach(box => {
                 box.style.flex = `1 0 ${basis}%`; //set flex-basis to create dynamic grid
