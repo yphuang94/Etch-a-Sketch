@@ -11,17 +11,13 @@
 <body>
     <div id="title-container">Etch-a-Sketch</div>
     <div id="main-container">
-
         <div id="user-container">
             <div><button id="rainbow" onclick="rainbowGrid()">Rainbow Mode</button></div>
-
             <div><input type="range" min="8" max="30" value="8" id="slider">
-            <p>Grid Size: <span id="gridsize"></span></p>
+                <p>Grid Size: <span id="gridsize"></span></p>
             </div>
-
-            <div id="clear-grid"><button onclick="clearGrid()">Clear</button></div>
+            <div><button id="clear-grid" onclick="clearGrid()">Clear</button></div>
         </div>
-
         <div id="grid-container" onmousemove="gridHover()"></div>
     </div>
     

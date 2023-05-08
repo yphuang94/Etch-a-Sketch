@@ -1,6 +1,9 @@
 #title-container {
     text-align: center;
     height: 20vh;
+    font-size: 48px;
+    font-weight: 700;
+    
 }
 
 #main-container {
@@ -11,7 +14,8 @@
 }
 
 #grid-container {
-    border: 1px solid lightcoral;
+    border: 4px solid;
+    border-image: linear-gradient(to right, darkblue, darkorchid) 1;
     display: flex;
     flex-wrap: wrap;
     height: 50vh;
@@ -24,5 +28,23 @@
 
 #user-container {
     width: 30%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
+p {
+    margin-top: 0px;
+}
+
+#slider {
+    margin-top: 20px;
+}
+
+#rainbow, #clear-grid {
+    background-color: #3e68ff;
+    color: #fff;
+    border-radius: 8px;
+    font-size: 18px;
+    
+}
